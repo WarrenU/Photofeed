@@ -9,7 +9,7 @@ def upload(self):
 
 
 class Photo(models.Model):
-    file = models.ImageField(upload_to=upload)
+    image = models.ImageField(upload_to=upload)
     location = models.CharField(blank=True, max_length=255)
     likes = models.ManyToManyField('photographers.Photographer',
                                    related_name="likes")
