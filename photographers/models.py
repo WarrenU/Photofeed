@@ -11,7 +11,7 @@ class Photographer(models.Model):
     """
     Photographers are the users of the system.
     """
-    feed = models.ManyToManyField(Photo)
+    feed = models.ManyToManyField(Photo, blank=True)
     followees = models.ManyToManyField("self", blank=True)
     followers = models.ManyToManyField("self", blank=True)
     location = models.CharField(blank=True, max_length=255)
