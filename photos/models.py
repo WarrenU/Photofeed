@@ -3,8 +3,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from locations.models import Location
-
 
 def upload(self):
     return "images/{}/".format(self.photographer)
@@ -12,7 +10,7 @@ def upload(self):
 
 class Photo(models.Model):
     file = models.ImageField(upload_to=upload)
-    location = models.ForeignKey(Location)
+    location = models.CharField(blank=True, max_length=255)
     likes = models.ManyToManyField('photographers.Photographer',
                                    related_name="likes")
     uploaded_by = models.ForeignKey('photographers.Photographer',

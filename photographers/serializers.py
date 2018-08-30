@@ -18,17 +18,22 @@ class PhotographerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Photographer
-        fields = ('feed',
+        fields = ('id',
+                  'feed',
                   'followees',
                   'followers',
                   'location',
-                  'user',)
+                  'user',
+                  'url')
 
     def create(self, validated_data):
         user_data = validated_data.pop('user')
+        password = user_data.pop('password')
         user = UserSerializer.create(UserSerializer(),
                                      validated_data=user_data)
-        print("\n\n", validated_data)
-        photographer = Photographer.objects.create(user=user,
-                                                   location=validated_data.get('location'))
+        user.set_password(password)
+        user.save()
+        photographer = Photographer.objects.create(
+            user=user,
+            location=validated_data.get('location'))
         return photographer

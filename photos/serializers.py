@@ -6,7 +6,9 @@ from photos.models import Photo
 class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
-        fields = ('uploaded_by',
+        fields = ('id',
                   'file',
+                  'likes',
                   'location',
-                  'likes')
+                  'uploaded_by',
+                  'url',)

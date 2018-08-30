@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     # Local
     'app',
     'comments',
-    'locations',
     'photographers',
     'photos',
 ]
