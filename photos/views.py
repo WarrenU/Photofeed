@@ -10,4 +10,3 @@ class PhotosViewSet(viewsets.ModelViewSet):
     queryset = Photo.objects.all()
     serializer_class = PhotoSerializer
 
-
