@@ -19,13 +19,12 @@ class PhotosViewSet(viewsets.ModelViewSet):
         """
         Get photo feed of a Photographer (user), that is within the
         photographers location and excluding all photos they uploaded.
+        Union with Photos uploaded by people the photographer is following.
         """
         photographer = Photographer.objects.get(id=pk)
         uploaded_photos = (
-            Photo
-            .objects
-            .filter(location__istartswith=photographer.location)
-            .exclude(uploaded_by=photographer)
+            Photo.objects.filter(location__istartswith=photographer.location).exclude(uploaded_by=photographer) |
+            Photo.objects.filter(uploaded_by__in=photographer.following.all())
         )
         serializer = self.get_serializer(uploaded_photos, many=True)
         return Response(serializer.data)
