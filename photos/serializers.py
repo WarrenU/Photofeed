@@ -12,3 +12,4 @@ class PhotoSerializer(serializers.ModelSerializer):
                   'location',
                   'uploaded_by',
                   'url',)
+
