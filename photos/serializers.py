@@ -4,11 +4,11 @@ from photos.models import Photo
 
 
 class PhotoSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Photo
         fields = ('id',
-                  'file',
-                  'likes',
+                  'image',
                   'location',
                   'uploaded_by',
                   'url',)

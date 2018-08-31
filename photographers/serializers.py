@@ -19,9 +19,6 @@ class PhotographerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photographer
         fields = ('id',
-                  'feed',
-                  'followees',
-                  'followers',
                   'location',
                   'user',
                   'url')
