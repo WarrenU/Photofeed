@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -17,14 +18,16 @@ class PhotosViewSet(viewsets.ModelViewSet):
     @action(detail=True)
     def feed(self, request, pk):
         """
-        Get photo feed of a Photographer (user), that is within the
-        photographers location and excluding all photos they uploaded.
-        Union with Photos uploaded by people the photographer is following.
+        Get photo feed for photographer, giving them a queryset of Photos
+        near their location, and uploaded by photographers they are following.
         """
         photographer = Photographer.objects.get(id=pk)
-        uploaded_photos = (
-            Photo.objects.filter(location__istartswith=photographer.location).exclude(uploaded_by=photographer) |
-            Photo.objects.filter(uploaded_by__in=photographer.following.all())
+        photo_feed = (
+            Photo
+            .objects
+            .filter(Q(location__istartswith=photographer.location) |
+                    Q(uploaded_by__in=photographer.following.all()))
+            .exclude(uploaded_by=photographer)
         )
-        serializer = self.get_serializer(uploaded_photos, many=True)
+        serializer = self.get_serializer(photo_feed, many=True)
         return Response(serializer.data)
