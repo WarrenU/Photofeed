@@ -9,7 +9,7 @@ from .serializers import PhotoSerializer
 
 class PhotosViewSet(viewsets.ModelViewSet):
     """
-    API endpoint for Photographers to be viewed or edited.
+    API endpoint for Photos to be viewed or edited.
     """
     queryset = Photo.objects.all()
     serializer_class = PhotoSerializer
@@ -24,7 +24,7 @@ class PhotosViewSet(viewsets.ModelViewSet):
         uploaded_photos = (
             Photo
             .objects
-            .filter(location=photographer.location)
+            .filter(location__istartswith=photographer.location)
             .exclude(uploaded_by=photographer)
         )
         serializer = self.get_serializer(uploaded_photos, many=True)
