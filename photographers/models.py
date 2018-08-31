@@ -19,3 +19,13 @@ class Photographer(models.Model):
 
     def __unicode__(self):
         return self.user.username
+
+    def follow_handshake(self, photographer_to_follow):
+        """
+        Given a `photographer_to_follow`, add's them to this photographer's
+        following. The `photographer_to_follow` gets this added to their
+        followers
+        :type photographer_to_follow: Photographer
+        """
+        self.following.add(photographer_to_follow)
+        photographer_to_follow.followers.add(self)
