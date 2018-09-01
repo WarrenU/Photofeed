@@ -2,10 +2,12 @@ from django.conf.urls import url, include
 
 from rest_framework import routers
 
+from comments.views import CommentsViewSet
 from photos.views import PhotosViewSet
 from photographers.views import PhotographersViewSet
 
 router = routers.DefaultRouter()
+router.register('comments', CommentsViewSet)
 router.register('photos', PhotosViewSet)
 router.register('photographers', PhotographersViewSet)
 
