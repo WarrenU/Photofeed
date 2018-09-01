@@ -22,7 +22,7 @@ class Photo(models.Model):
     @property
     def filename(self):
         """
-        Returns a filename of the image uploaded `file`
+        Returns a filename of the image uploaded
         :rtype: str
         """
         return self.image.name

@@ -38,6 +38,10 @@ class PhotographersViewSet(viewsets.ModelViewSet):
     @action(methods=['post'], detail=True,
             permission_classes=[IsAuthenticated])
     def follow(self, request, pk):
+        """
+        Post allowing for a Photographer to follow another and have them added
+        as a follower.
+        """
         logged_in_photographer = get_object_or_404(Photographer,
                                                    user=request.user)
         photographer_to_follow = get_object_or_404(Photographer, id=pk)

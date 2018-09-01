@@ -17,6 +17,9 @@ class PhotosViewSet(viewsets.ModelViewSet):
 
     @action(detail=True)
     def comments(self, request, pk):
+        """
+        Endpoint for querying Comments on a photo.
+        """
         photo = Photo.objects.get(id=pk)
         comments = Comment.objects.filter(photo=photo)
         serializer = CommentSerializer(comments,
