@@ -7,7 +7,6 @@ virtualenv env
 source env/bin/activate
 chmod +x ./setup.sh
 _ ./setup.sh
-deactivate
 ```
 
 ### Comments App:
