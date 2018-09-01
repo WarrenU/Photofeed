@@ -25,13 +25,11 @@ class PhotographersViewSet(viewsets.ModelViewSet):
         near their location, and uploaded by photographers they are following.
         """
         photographer = Photographer.objects.get(id=pk)
-        photo_feed = (
-            Photo
-            .objects
-            .filter(Q(location__istartswith=photographer.location) |
-                    Q(uploaded_by__in=photographer.following.all()))
-            .exclude(uploaded_by=photographer)
-        )
+        photo_feed = (Photo
+                      .objects
+                      .filter(Q(location__istartswith=photographer.location) |
+                              Q(uploaded_by__in=photographer.following.all()))
+                      .exclude(uploaded_by=photographer))
         serializer = PhotoSerializer(photo_feed,
                                      many=True,
                                      context={'request': request})
