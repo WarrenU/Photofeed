@@ -29,3 +29,4 @@ class Photographer(models.Model):
         """
         self.following.add(photographer_to_follow)
         photographer_to_follow.followers.add(self)
+        return self

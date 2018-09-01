@@ -1,6 +1,8 @@
 from django.db.models import Q
-from rest_framework import viewsets
+from django.shortcuts import get_object_or_404
+from rest_framework import viewsets, status
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from photos.models import Photo
@@ -34,4 +36,13 @@ class PhotographersViewSet(viewsets.ModelViewSet):
                                      many=True,
                                      context={'request': request})
         return Response(serializer.data)
+
+    @action(methods=['post'], detail=True,
+            permission_classes=[IsAuthenticated])
+    def follow(self, request, pk):
+        logged_in_photographer = get_object_or_404(Photographer,
+                                                   user=request.user)
+        photographer_to_follow = get_object_or_404(Photographer, id=pk)
+        logged_in_photographer.follow_handshake(photographer_to_follow)
+        return Response({'status': status.HTTP_200_OK})
 
