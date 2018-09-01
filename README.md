@@ -35,3 +35,6 @@ Newport Beach, Irvine) for example.
 2. List view of comments is available: `/photos/1/comments/`,
  we are querying a list of Comment objects, related to Photo id 1,
  as per example with link: /photos/1/comments/`
+ 
+ ### Model Diagram:
+ ![screenshot from 2018-08-31 20-22-53](https://user-images.githubusercontent.com/13735104/44941950-43bf3100-ad5c-11e8-82c8-ea75f42da1cc.png)
