@@ -35,4 +35,4 @@ Newport Beach, Irvine) for example.
 1. ModelViewSet allows for Create, Read, Update, Delete
 2. List view of comments is available: `/photos/1/comments/`,
  we are querying a list of Comment objects, related to Photo id 1,
- as per example with link: `/photos/1/comments/`
+ as per example with link: /photos/1/comments/`
