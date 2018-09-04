@@ -17,7 +17,7 @@ _ ./setup.sh
 Serves as link to django's user model, by having OneToOne w/ User. Useful
 for showing who authored a photo or comment. Also a point of interest for
 following other users. A Photographer has a location, so we are matching 
-Photographer's locations to locations of Photo objects, in our feed endpoint.
+Photographer's locations to locations of Photo objects, in our feed endpoint, see `views.py` in `photographers` app.
 1. ModelViewSet allows for Create, Read, Update, Delete
 2. PhotographerSerializer overrides create and update to handle User &
  Photographer editing.
@@ -34,7 +34,7 @@ Newport Beach, Irvine) for example.
 1. ModelViewSet allows for Create, Read, Update, Delete
 2. List view of comments is available: `/photos/1/comments/`,
  we are querying a list of Comment objects, related to Photo id 1,
- as per example with link: `/photos/1/comments/`
+ as per example with link: `/photos/1/comments/` see `views.py` in `photos` app.
  
  ### Model Diagram:
  ![screenshot from 2018-08-31 20-22-53](https://user-images.githubusercontent.com/13735104/44941950-43bf3100-ad5c-11e8-82c8-ea75f42da1cc.png)
