@@ -23,9 +23,9 @@ Photographer's locations to locations of Photo objects, in our feed endpoint.
  Photographer editing.
 3. To see a photographer's Feed of photos near their location & of
  photographers they are following, visit: `/photographers/1/feed/`
-4. To follow a user, you could update Photographer,
- Do a post request to: `photographers/1/follow` where the id in the url is who
- you (logged in user) wants to follow.
+4. To follow a user, you could update via Post/Patch on the Photographer endpoint: `photographers/1/follow`,
+ or do a post request to: `photographers/1/follow` where the id in the url is who
+ you want to follow (as a logged in user, ensured via IsAuthenticated).
 
 ### Photos App:
 Photos are uploaded by a Photographer, and are taken at a certain location.
